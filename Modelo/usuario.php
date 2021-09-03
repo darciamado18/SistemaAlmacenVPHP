@@ -42,19 +42,21 @@
 
         function insertar(){
             $insercion = mysqli_query($this->_conexion, "INSERT INTO  
-            Cliente (idCliente, nombreCliente, documentoCliente, correoCliente)
-            VALUES (NULL, '$this->_nombreCliente', '$this->_documentoCliente', '$this->_correoCliente')");
+            usuarios (idusuarios, tipoidentUsu, noidentifUsu, nombresUsu, apellidosUsu, celularUsu, correoUsu, direccionUsu, rolUsu, nick, password)
+            VALUES (NULL, '$this->_tipoidentUsu', '$this->_noidentifUsu', '$this->_nombresUsu', '$this->_apellidosUsu', '$this->_celularUsu', '$this->_correoUsu', '$this->_direccionUsu,
+            '$this->_rolUsu', '$this->_nick', '$this->_password')");
             $auditoria = mysqli_query($this->_conexion, "INSERT INTO 
             Auditoria (idAuditoria, detalleAuditoria, idUsuarioAuditoria, fechaAuditoria)
-            VALUES  (NULL, 'Inserto' ".static::class.",".$_SESSION['idUsuario'].",'CURDATE()')");
+            VALUES  (NULL, 'Inserto' ".static::class.",".$_SESSION['idusuarios'].",'CURDATE()')");
             return $insercion;
         }
 
         function modificar(){
-            $modificacion = mysqli_query($this->_conexion, "UPDATE Cliente SET 
-            nombreCliente = '$this->_nombreCliente', documentoCliente = '$this->_documentoCliente',
-            correoCliente = '$this->_correoCliente'
-            WHERE idCliente = $this->_idCliente");
+            $modificacion = mysqli_query($this->_conexion, "UPDATE usuarios SET 
+            tipoidentUsu = '$this->_tipoidentUsu', noidentifUsu = '$this->_noidentifUsu', nombresUsu = '$this->_nombresUsu',
+            apellidosUsu = '$this->_apellidosUsu', celularUsu = '$this->_celularUsu', correoUsu = '$this->_correoUsu', 
+            direccionUsu = '$this->_direccionUsu', rolUsu = '$this->_rolUsu', nick = '$this->_nick', password = '$this->_password' 
+            WHERE idusuarios = $this->_idusuarios");
             $auditoria = mysqli_query($this->_conexion, "INSERT INTO 
             Auditoria (idAuditoria, detalleAuditoria, idUsuarioAuditoria, fechaAuditoria)
             VALUES  (NULL, 'Modifco' ".static::class.",".$_SESSION['idUsuario'].",'CURDATE()')");
@@ -62,8 +64,8 @@
         }
 
         function eliminar(){
-            $eliminacion = mysqli_query($this->_conexion, "DELETE FROM Cliente 
-            WHERE idCliente = $this->_idCliente");
+            $eliminacion = mysqli_query($this->_conexion, "DELETE FROM usuarios 
+            WHERE idusuarios = $this->_idusuarios");
             $auditoria = mysqli_query($this->_conexion, "INSERT INTO 
             Auditoria (idAuditoria, detalleAuditoria, idUsuarioAuditoria, fechaAuditoria)
             VALUES  (NULL, 'Inserto ' ".static::class.",".$_SESSION['idUsuario'].",'CURDATE()')");
@@ -72,7 +74,7 @@
 
         function cantidadPaginas(){
             $cantidadBloques = mysqli_query($this->_conexion, 
-                "SELECT CEIL (COUNT (idCliente)/$this->_paginacion) AS cantidad FROM Cliente")
+                "SELECT CEIL (COUNT (idusuarios)/$this->_paginacion) AS cantidad FROM usuarios")
                 or die(mysqli_error($this->_conexion));
                 $unRegistro = mysqli_fetch_array($cantidadBloques);
                 return $unRegistro['cantidad'];                
@@ -80,7 +82,7 @@
 
         function listar($pagina){
             if ($pagina<=0){
-                $listado = mysqli_query($this->_conexion, "SELECT * FROM Cliente ORDER BY idCliente 
+                $listado = mysqli_query($this->_conexion, "SELECT * FROM usuarios ORDER BY idusuarios 
                 LIMIT $paginacion, $paginacionMax") or die (mysqli_error($this->conexion));                
             }
             return $listado;         
