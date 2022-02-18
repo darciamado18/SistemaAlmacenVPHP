@@ -39,8 +39,8 @@
             echo '    <input  type ="text"    name ="fNombreCliente"     value ="'.$unRegistro['nombreCliente'].'"></td>';
             echo '<td><input  type ="number"  name ="fDocumentoCliente"  value ="'.$unRegistro['documentoCliente'].'"></td>';
             echo '<td><input  type ="email"   name ="fCorreoCliente"     value ="'.$unRegistro['correoCliente'].'"></td>';
-            echo '<td><button type ="submit"  name ="fEnviar"            value = "Modificar"></button>
-                      <button type ="submit"  name ="fEnviar"            value = "Eliminar"></button></td>';
+            echo '<td><button type ="submit"  name ="fEnviar"            value = "MODIFICAR"></button>
+                      <button type ="submit"  name ="fEnviar"            value = "ELIMINAR"></button></td>';
             echo '</form></tr>';
         }
     ?>
@@ -49,8 +49,8 @@
                 <td><input  type = "text"   name = "fNombreCliente"></td>
                 <td><input  type = "number" name = "fDocumentoCliente"></td>
                 <td><input  type = "email"  name = "fCorreoCliente"></td>
-                <td><button type = "submit" name = "fEnviar" value = "Ingresar"></button>
-                    <button type = "reset"  name = "fEnviar" value = "Limpiar"></button></td>
+                <td><button type = "submit" name = "fEnviar" value = "INGRESAR"></button>
+                    <button type = "reset"  name = "fEnviar" value = "LIMPIAR"></button></td>
             </form></tr>
         </tbody>
     </table>
